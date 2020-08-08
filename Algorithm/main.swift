@@ -6,8 +6,7 @@
 //  Copyright © 2020 신효근. All rights reserved.
 
 
-import Foundation
-
+//import Foundation
 // self number 문제(8/2)
 //
 //func d(_ n:Int) -> Int{
@@ -33,21 +32,34 @@ import Foundation
 //}
 //isThisNumberSelfNumber(n: 10000)
 
-
+//import Foundation
 // 한수 문제(8/2)
-let n = Int(readLine()!)!
-func isThisNumberHan(_ n:Int) -> Int{
-    var mother : Int = 0
-    for i in 1...n {
-     if i < 100{
-      mother += 1
-     } else {
-      let stringfy = String(i)
-      let stringArr = Array(stringfy)
-      let IntArr = stringArr.map { (value : String.Element) -> Int in return Int(String(value))!}
-      if IntArr[1]-IntArr[0] == IntArr[2] - IntArr[1]{ mother += 1}
-        }
-    }
-    return mother
-}
-print(isThisNumberHan(n))
+//let n = Int(readLine()!)!
+//func isThisNumberHan(_ n:Int) -> Int{
+//    var mother : Int = 0
+//    for i in 1...n {
+//     if i < 100{
+//      mother += 1
+//     } else {
+//      let stringfy = String(i)
+//      let stringArr = Array(stringfy)
+//      let IntArr = stringArr.map { (value : String.Element) -> Int in return Int(String(value))!}
+//      if IntArr[1]-IntArr[0] == IntArr[2] - IntArr[1]{ mother += 1}
+//        }
+//    }
+//    return mother
+//}
+//print(isThisNumberHan(n))
+
+
+//A+B +5 문제
+
+import Foundation
+//
+//while let line = readLine() {
+//    let realLine = line.split(separator: " ")
+//    let a = Int(realLine[0])!
+//    let b = Int(realLine[1])!
+//    print(a+b)
+//}
+while let line = readLine() { print(line) }
