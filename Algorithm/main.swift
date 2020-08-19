@@ -110,20 +110,178 @@
 //}
 
 //상근날드
+//
+//import Foundation
+//
+//let A = Int(readLine()!)!
+//let B = Int(readLine()!)!
+//let C = Int(readLine()!)!
+//let D = Int(readLine()!)!
+//let E = Int(readLine()!)!
+//
+//var burgerArr = [A,B,C]
+//var beverageArr = [D,E]
+//
+//let real1 = burgerArr.min()
+//let real2 = beverageArr.min()
+//
+//print(real1! + real2! - 50)
+
+
+//소팅
+
+//import Foundation
+//
+//let real = readLine()!
+//let a = real.components(separatedBy: " ")
+//var b = a.map { (al : String) -> Int in Int(al)!}
+//print(b.sorted()[1])
+
+//별찍기
+
+//import Foundation
+//var result = ""
+//
+//let a = Int(readLine()!)!
+//
+//for i in 1...2*a-1 {
+//    if i <= a {
+//        for _ in 1...i {
+//            result.append("*")
+//        }
+//        print(result)
+//        result = ""
+//    } else if i > a {
+//        for _ in 1...2*a-i {
+//            result.append("*")
+//        }
+//        print(result)
+//        result = ""
+//    }
+//}
+
+//별찍기2
+//
+//import Foundation
+//
+//var result = ""
+//let a = Int(readLine()!)!
+//
+////전체 범위
+//for i in 1...2*a-1{
+//
+//    //감소하는 부분
+//    if i <= a {
+//        for j in 0...i-1 {
+//            if j != 0{
+//             result.append(" ")
+//            }
+//        }
+//        for _ in 1...(2*a-1) - (2*(i-1)){
+//                result.append("*")
+//        }
+//        print(result)
+//        result = ""
+//
+//    //다시 증가하는 부분
+//    }
+//    else if i > a{
+//        for j in 0...(2*a-1)-i {
+//           if j != 0 {
+//             result.append(" ")
+//            }
+//        }
+//        for _ in 1...(2*a-1) - 2*((2*a-1)-i){
+//                result.append("*")
+//        }
+//        print(result)
+//        result = ""
+//    }
+//}
+
+//import Foundation
+//
+//let howManyLineDoYouNeed = Int(readLine()!)!
+//
+//var result = ""
+//
+//for i in 1...2*howManyLineDoYouNeed {
+//    if i%2 != 0 {
+//        for j in 1...howManyLineDoYouNeed {
+//            if j%2 != 0 {
+//                result.append("*")
+//            } else {
+//                result.append(" ")
+//            }
+//        }
+//        print(result)
+//        result = ""
+//    } else {
+//        for j in 1...howManyLineDoYouNeed {
+//            if j%2 != 0 {
+//                result.append(" ")
+//            } else {
+//                result.append("*")
+//            }
+//        }
+//        print(result)
+//        result = ""
+//    }
+//}
+
+//import Foundation
+//
+//var max: Int = 0
+//var a = 1
+//var things : Array<Int> = []
+//while let line = readLine() {
+//    a = a+1
+//    things.append(Int(line)!)
+//    max = Int(line)! > max ? Int(line)! : max
+//    if a > 9 {
+//        for i in 0...8 {
+//            if max == things[i] {
+//                print(max)
+//                print(i+1)
+//            }
+//        }
+//        break
+//    }
+//}
+//for i in 0...8{
+//    let a = Int(readLine()!)!
+//    max = a > max ? a : max
+//    things.append(a)
+//    if i == 8 {
+//        print(max)
+//        for j in 0...8 {
+//            if max == things[j]{
+//                print(j)
+//            }
+//        }
+//    }
+//}
+
+
+//let numberArr = things!.map { (arr : String) -> Int in Int(arr)!}
+//print("\(numberArr.sorted()[0]) \(numberArr.sorted()[howMany-1])")
+
 
 import Foundation
 
 let A = Int(readLine()!)!
 let B = Int(readLine()!)!
 let C = Int(readLine()!)!
-let D = Int(readLine()!)!
-let E = Int(readLine()!)!
+var array = [Int](repeating: 0, count: 10)
+var temp: Int = 0
 
-var burgerArr = [A,B,C]
-var beverageArr = [D,E]
+var result = A*B*C
 
-let real1 = burgerArr.min()
-let real2 = beverageArr.min()
-
-print(real1! + real2! - 50)
-
+while result != 0 {
+    temp = result%10
+    array[temp] = array[temp]+1
+    result = result/10
+}
+for i in 0...9{
+ print(array[i])
+}
