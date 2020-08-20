@@ -266,22 +266,161 @@
 //let numberArr = things!.map { (arr : String) -> Int in Int(arr)!}
 //print("\(numberArr.sorted()[0]) \(numberArr.sorted()[howMany-1])")
 
+//
+//import Foundation
+//
+//let A = Int(readLine()!)!
+//let B = Int(readLine()!)!
+//let C = Int(readLine()!)!
+//var array = [Int](repeating: 0, count: 10)
+//var temp: Int = 0
+//
+//var result = A*B*C
+//
+//while result != 0 {
+//    temp = result%10
+//    array[temp] = array[temp]+1
+//    result = result/10
+//}
+//for i in 0...9{
+// print(array[i])
+//}
+
+
+
+//import Foundation
+//
+//var a = 1
+//var b = 0
+//var arr = [Int](repeating: 0, count: 42)
+//var finalArr : Array<Int> = []
+//while let read = readLine() {
+//    a = a + 1
+//    b = Int(read)!%42
+//    arr[b] = arr[b] + 1
+//    if a > 10 {
+//       finalArr = arr.filter { (value : Int) -> Bool in
+//            value != 0
+//        }
+//        print(finalArr.count)
+//        break
+//    }
+//}
+
+//import Foundation
+//
+//let a = Double(readLine()!)!
+//var arr = readLine()!.components(separatedBy:" ").map { (value : String) -> Double in Double(value)!}
+//var newArr = [Double].init(repeating: Double(0), count: arr.count)
+//var result : Double = 0
+//
+//var max = Double(0)
+//for i in 0...Int(a-1) {
+//    max = arr[i] > max ? arr[i] : max
+//}
+//for i in 0...Int(a-1) {
+//  newArr[i] = (arr[i]/max)*Double(100)
+//  result = result + newArr[i]
+//    if i == Int(a-1) {
+//        result = result/a
+//        print(result)
+//    }
+//}
+
+//import Foundation
+//
+//let a = Int(readLine()!)!
+//var limit = 0
+//var resultArr = [Int].init(repeating: 0, count: a)
+//while let read = readLine() {
+//    limit = limit + 1
+//    var score = 0
+//    var upup = 0
+//    for i in read {
+//        if String(i) == "O" {
+//            upup = upup + 1
+//            score = score + upup
+//        } else if String(i) == "X" {
+//            upup = 0
+//        }
+//    }
+//    resultArr[limit-1] = score
+//    if limit == a {
+//        for i in 0...a-1 {
+//            print(resultArr[i])
+//        }
+//        break
+//    }
+//}
+
+//var a = readLine()!
+//var ds = [String].init(repeating: "D", count: a.count)
+//for index in a.indices {
+//    Int(a[index] as Character) as BinaryInteger
+//}
+//print(ds)
+
+//var str =  "21231"
+//
+//for index in str{
+//
+//    print(Int(String(index))!)
+//
+//}
+
+//import Foundation
+//
+//let a = Double(readLine()!)!
+//var limit : Double = 0
+//var resultArr : [String] = []
+//
+//while let read = readLine() {
+//    limit = limit + 1
+//    let whole = read.components(separatedBy: " ").map { (value : String) -> Double in Double(value)! }
+//    let howMany = whole[0]
+//    var mean : Double = 0
+//    var realQuick : Double = 0
+//    for i in 1...whole.count-1 {
+//        mean = mean + whole[i]
+//        if i == whole.count - 1 {
+//            mean = mean / (Double(whole.count)-1)
+//            for i in 1...whole.count-1 { if whole[i] > mean { realQuick = realQuick + 1 } }
+//            resultArr.append(String(format: "%.3f", (realQuick/howMany)*100) + "%")
+//        }
+//    }
+//    if limit == a {
+//        for i in 0...Int(a-1){
+//            print(resultArr[i])
+//        }
+//        break
+//    }
+//}
+
+//
+//import Foundation
+//let a = readLine()!
+//print((UnicodeScalar.init(a)?.value)!)
+
+//import Foundation
+//
+//if readLine() != nil {
+//    var result = 0
+//    let read2 = readLine()!
+//    for index in read2 {  result = result + Int(String(index))! }
+//    print(result)
+//}
+
 
 import Foundation
 
-let A = Int(readLine()!)!
-let B = Int(readLine()!)!
-let C = Int(readLine()!)!
-var array = [Int](repeating: 0, count: 10)
-var temp: Int = 0
-
-var result = A*B*C
-
-while result != 0 {
-    temp = result%10
-    array[temp] = array[temp]+1
-    result = result/10
+let a = Int(readLine()!)!
+var limit = 0
+while let read = readLine() {
+    limit = limit + 1
+    
+    if limit == a {
+        break
+    }
 }
-for i in 0...9{
- print(array[i])
-}
+
+
