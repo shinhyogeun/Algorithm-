@@ -130,78 +130,83 @@ var VSlimit = 0
 
 var groundX : Array<Double> = []
 var groundY : Array<Double> = []
-var skyX : Array<Double> = []
-var skyY : Array<Double> = []
 var totalX : Array<Double> = []
 var totalY : Array<Double> = []
 
 var groundLength : Double = 0
 var didYouPossibleToGetBenefit : Array<Double> = []
+var returnValue : Double?
 
 while let read2 = readLine() {
     VSlimit = VSlimit + 1
     if VSlimit <= howManyHeight {
-        //지금 들어온 값은 Height에 관한 값이다.
-        let a = read2.components(separatedBy: " ").map{ (value : String) -> Int in Int(value)! }
-        skyX.append(Double(a[0]))
-        skyY.append(Double(a[1]))
-        totalX.append(Double(a[0]))
-        totalY.append(Double(a[1]))
+        
+        let a = read2.components(separatedBy: " ").map{ (value : String) -> Double in Double(value)! }
+        totalX.append(a[0])
+        totalY.append(a[1])
     } else if VSlimit > howManyHeight{
-        //지금 들어온 값은 Ground에 관한 값이다.
-        let b = read2.components(separatedBy: " ").map{ (value : String) -> Int in Int(value)! }
-        groundX.append(Double(b[0]))
-        groundY.append(Double(b[1]))
-        totalX.append(Double(b[0]))
-        totalY.append(Double(b[1]))
+        
+        let a = read2.components(separatedBy: " ").map{ (value : String) -> Double in Double(value)! }
+        groundX.append(a[0])
+        groundY.append(a[1])
+        totalX.append(a[0])
+        totalY.append(a[1])
     }
     
     
     if VSlimit == limit {
-        /*처음에는 일단 땅기어가기 구하고 그 후에 다양한 비교들이 일어나야 한다.*/
         
-        //땅기어가기 구하는 과정
-        for i in 0...howManyGround-1{
-                groundLength = groundLength + ((groundX[i+1]-groundX[i]) + (groundY[i+1]-groundY[i]))
+        func measureBenefitLength(first:Array<Double>, second:Array<Double>) -> Double{
+            var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
+            a = pow(a, 2); b = pow(b, 2)
+            return a+b - sqrt(a+b)
         }
-        //대각선길이 측정해야하는 애들
-        for i in 0...limit-1{
-            if totalY[i] <= groundY.max()! && totalY[i] > 0 && totalX[i] != 0{
-                for j in 0...Int(groundLength)-1{
-                    
+
+        func isThisMeasurePossible(first:Array<Double>, second:Array<Double>) -> Bool{
+            for i in 0...limit-1{
+                if totalX[i] > first[0] && totalX[i] < second[0]{
+                    if first[1]<second[1]{
+                        var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
+                        a = pow(a, 2); b = pow(b, 2)
+                        var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
+                        c = pow(c,2) ; d = pow(d,2)
+                        if cos((second[0]-first[0])/(sqrt(a+b))) > cos((totalX[i]-first[0])/sqrt(c+d)){
+                            return false
+                        }
+                    }else if first[1]>second[1]{
+                        var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
+                        a = pow(a, 2); b = pow(b, 2)
+                        var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
+                        c = pow(c,2) ; d = pow(d,2)
+                        if cos((first[1])/(sqrt(a+b))) > cos((first[1]-totalY[i])/(sqrt(c+d))){
+                            return false
+                        }
+                    }
                 }
-                cos(<#T##Double#>)
+            }
+            return true
+        }
+        
+        for i in 0...howManyGround-1{
+            if i < howManyGround-1{
+             groundLength = groundLength + abs((groundX[i+1]-groundX[i]) + (groundY[i+1]-groundY[i]))
             }
         }
         
+        for i in 0...limit-1{
+            if totalY[i] <= groundY.max()! && totalY[i] > 0 && totalX[i] != 0{
+                for j in 0...groundX.count-1{
+                    if groundX[j] < totalX[i] && groundY[j] != totalY[i] {
+                        if isThisMeasurePossible(first: [groundX[j],groundY[j]], second: [totalX[i],totalY[i]]){
+                            didYouPossibleToGetBenefit.append(measureBenefitLength(first: [groundX[j],groundY[j]], second: [totalX[i],totalY[i]]))
+                        }
+                    }
+                }
+            }
+        }
+        if let realLast = didYouPossibleToGetBenefit.max(){
+        print(groundLength-realLast)
+        }
         break
     }
 }
-
-//이익거리 산출(GroundLength에서 이익거리를 빼면 최단거리다!!!)
-func measureBenefitLength(first:Array<Double>, second:Array<Double>) -> Double{
-    var a = (second[2]-first[2]) ; var b = (second[1]-first[1])
-    a = pow(a, 2); b = pow(b, 2)
-    return a+b - sqrt(a+b)
-}
-
-//대각선 비행이 가능하나요?
-func isThisMeasurePossible(first:Array<Double>, second:Array<Double>) -> Bool{
-    
-}
-
-
-
-//func measureGroundLength(first:Array<Double>, second:Array<Double>) -> Double{
-//    var startPoint : Int?
-//    var endPoint : Int?
-//    var littleGroundLength : Double = 0
-//    for i in 0...groundX.count-1{
-//        if first[1] == groundX[i]{ startPoint = i }
-//        if second[1] == groundX[i]{ endPoint = i }
-//    }
-//    for i in startPoint!...endPoint!{
-//        littleGroundLength = littleGroundLength + ((groundX[i+1]-groundX[i]) + (groundY[i+1]-groundY[i]))
-//    }
-//    return littleGroundLength
-//}
