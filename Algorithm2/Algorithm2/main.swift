@@ -130,6 +130,8 @@ var VSlimit = 0
 
 var groundX : Array<Double> = []
 var groundY : Array<Double> = []
+var skyX : Array<Double> = []
+var skyY : Array<Double> = []
 var totalX : Array<Double> = []
 var totalY : Array<Double> = []
 
@@ -142,10 +144,11 @@ while let read2 = readLine() {
     if VSlimit <= howManyHeight {
         
         let a = read2.components(separatedBy: " ").map{ (value : String) -> Double in Double(value)! }
+        skyX.append(a[0])
+        skyY.append(a[1])
         totalX.append(a[0])
         totalY.append(a[1])
     } else if VSlimit > howManyHeight{
-        
         let a = read2.components(separatedBy: " ").map{ (value : String) -> Double in Double(value)! }
         groundX.append(a[0])
         groundY.append(a[1])
@@ -164,23 +167,54 @@ while let read2 = readLine() {
 
         func isThisMeasurePossible(first:Array<Double>, second:Array<Double>) -> Bool{
             for i in 0...limit-1{
-                if totalX[i] > first[0] && totalX[i] < second[0]{
-                    if first[1]<second[1]{
-                        var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
-                        a = pow(a, 2); b = pow(b, 2)
-                        var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
-                        c = pow(c,2) ; d = pow(d,2)
-                        if cos((second[0]-first[0])/(sqrt(a+b))) > cos((totalX[i]-first[0])/sqrt(c+d)){
+                if groundX[i] >= first[0] && groundX[i] <= second[0]{
+                    if second[1] > first[1]{
+                        if groundY[i] >= second[1] && groundX[i] == first[0]{
                             return false
                         }
-                    }else if first[1]>second[1]{
-                        var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
-                        a = pow(a, 2); b = pow(b, 2)
-                        var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
-                        c = pow(c,2) ; d = pow(d,2)
-                        if cos((first[1])/(sqrt(a+b))) > cos((first[1]-totalY[i])/(sqrt(c+d))){
+                    }else{
+                        if groundY[i] >= first[1] && groundX[i] == second[0]{
                             return false
                         }
+                    }
+                    for j in 0...skyX.count-1{
+                        if skyX[j] == totalX[i] && skyY[j] == totalY[i]{
+                            if first[1]<second[1]{
+                                   var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
+                                   a = pow(a, 2); b = pow(b, 2)
+                                   var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
+                                   c = pow(c,2) ; d = pow(d,2)
+                                   if cos((second[0]-first[0])/(sqrt(a+b))) < cos((totalX[i]-first[0])/sqrt(c+d)){
+                                       return false
+                                   }
+                               }else if first[1]>second[1]{
+                                   var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
+                                   a = pow(a, 2); b = pow(b, 2)
+                                   var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
+                                   c = pow(c,2) ; d = pow(d,2)
+                                   if cos((first[1])/(sqrt(a+b))) < cos((first[1]-totalY[i])/(sqrt(c+d))){
+                                       return false
+                                   }
+                            }
+                        } else{
+                            if first[1]<second[1]{
+                                var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
+                                a = pow(a, 2); b = pow(b, 2)
+                                var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
+                                c = pow(c,2) ; d = pow(d,2)
+                                if cos((second[0]-first[0])/(sqrt(a+b))) > cos((totalX[i]-first[0])/sqrt(c+d)) || totalY[i]>=second[1]{
+                                    return false
+                                }
+                            }else if first[1]>second[1]{
+                                var a = (second[1]-first[1]) ; var b = (second[0]-first[0])
+                                a = pow(a, 2); b = pow(b, 2)
+                                var c = (totalX[i]-first[0]) ; var d = (totalY[i]-first[1])
+                                c = pow(c,2) ; d = pow(d,2)
+                                if cos((first[1])/(sqrt(a+b))) > cos((first[1]-totalY[i])/(sqrt(c+d))) || totalY[i]>=first[1] {
+                                    return false
+                                }
+                         }
+                      }
                     }
                 }
             }
@@ -206,6 +240,7 @@ while let read2 = readLine() {
         }
         if let realLast = didYouPossibleToGetBenefit.max(){
         print(groundLength-realLast)
+        print(groundLength)
         }
         break
     }
