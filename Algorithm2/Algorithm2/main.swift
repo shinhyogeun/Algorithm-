@@ -167,7 +167,7 @@ while let read2 = readLine() {
 
         func isThisMeasurePossible(first:Array<Double>, second:Array<Double>) -> Bool{
             for i in 0...limit-1{
-                if groundX[i] >= first[0] && groundX[i] <= second[0]{
+                if i < groundX.count && groundX[i] >= first[0] && groundX[i] <= second[0]{
                     if second[1] > first[1]{
                         if groundY[i] >= second[1] && groundX[i] == first[0]{
                             return false

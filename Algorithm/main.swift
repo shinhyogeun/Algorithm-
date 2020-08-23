@@ -411,16 +411,44 @@
 //}
 
 
+//import Foundation
+//
+//let a = readLine()!
+//var arr : Array<Int> = [Int].init(repeating: -1, count: 26)
+//guard case let a == 3 else {
+//    RETURN
+//}
+//func returnFirstIndex(sun:String, mother:String) -> Int?{
+//    var arr2 : Array<String> = []
+//    for i in mother{
+//        arr2.append(String(i))
+//    }
+//    for i in 0...arr2.count-1{
+//        if sun == arr2[i]{
+//            return i
+//        }
+//    }
+//    return nil
+//}
+//
+//for i in a {
+//    let ok = returnFirstIndex(sun: String(i), mother: a)
+//    arr[] = (ok ?? -1)
+//}
+//
+//for i in 0...25{
+//    print
+//}
+
 import Foundation
 
-let a = Int(readLine()!)!
-var limit = 0
-while let read = readLine() {
-    limit = limit + 1
-    
-    if limit == a {
-        break
-    }
+var a = [1,2,2,3,4,5,6]
+let b = {1,1,1,2,3,4,5,5}
+if 1 in a{
+    print("asd")
 }
+
+
+
 
 
