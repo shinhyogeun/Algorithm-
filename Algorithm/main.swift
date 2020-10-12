@@ -442,10 +442,10 @@
 
 import Foundation
 
-var a = [1,2,2,3,4,5,6]
-let b = {1,1,1,2,3,4,5,5}
-if 1 in a{
-    print("asd")
+var a = "hello~"
+
+for i in a{
+    print(i)
 }
 
 
